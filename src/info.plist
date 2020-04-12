@@ -6,6 +6,32 @@
 	<string>DarkMode</string>
 	<key>connections</key>
 	<dict>
+		<key>0431B300-15C1-4E2B-B94C-9D9DBD547A2C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0C207DF8-7D9A-4452-B3C1-5EB6485906D0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>0C207DF8-7D9A-4452-B3C1-5EB6485906D0</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>4DE9C93E-A0E9-43BB-8ADA-000B8B7480EB</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
 		<array>
 			<dict>
@@ -64,7 +90,7 @@
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
-				<string>https://github.com/sindresorhus/dark-mode</string>
+				<string>https://github.com/sindresorhus/dark-mode#install</string>
 				<key>utf8</key>
 				<true/>
 			</dict>
@@ -104,7 +130,7 @@
 				<key>keyword</key>
 				<string>dark</string>
 				<key>subtext</key>
-				<string>Switch dark mode of macOS by dark-mode command</string>
+				<string>Turn on Dark-mode. Optional: on/off, switch.</string>
 				<key>text</key>
 				<string>Dark Mode</string>
 				<key>withspace</key>
@@ -128,7 +154,26 @@
 				<string>query="{query}"
 
 PATH=/usr/local/bin:$PATH
-command -v dark-mode &amp;&gt; /dev/null &amp;&amp; dark-mode $query || echo -n 'brew install dark-mode'</string>
+if command -v dark-mode &amp;&gt; /dev/null; then
+	args=''
+	case "$query" in
+	"" | on | ON)
+		args='on'
+		;;
+	off | OFF)
+		args='off'
+		;;
+	switch|SWITCH)
+		args=''
+		;;
+	*)
+		args='on'
+		;;
+	esac
+	dark-mode $args
+else
+	echo -n 'e.g. brew install dark-mode'
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -143,11 +188,74 @@ command -v dark-mode &amp;&gt; /dev/null &amp;&amp; dark-mode $query || echo -n 
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>light</string>
+				<key>subtext</key>
+				<string>Turn off Dark-mode, like dark off command.</string>
+				<key>text</key>
+				<string>Light Mode</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>0431B300-15C1-4E2B-B94C-9D9DBD547A2C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>PATH=/usr/local/bin:$PATH
+if command -v dark-mode &amp;&gt; /dev/null; then
+	dark-mode off
+else
+	echo -n 'e.g. brew install dark-mode'
+fi</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0C207DF8-7D9A-4452-B3C1-5EB6485906D0</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>0431B300-15C1-4E2B-B94C-9D9DBD547A2C</key>
+		<dict>
+			<key>xpos</key>
+			<integer>55</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
+		<key>0C207DF8-7D9A-4452-B3C1-5EB6485906D0</key>
+		<dict>
+			<key>xpos</key>
+			<integer>275</integer>
+			<key>ypos</key>
+			<integer>190</integer>
+		</dict>
 		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
 		<dict>
 			<key>xpos</key>
@@ -180,7 +288,7 @@ command -v dark-mode &amp;&gt; /dev/null &amp;&amp; dark-mode $query || echo -n 
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string></string>
+	<string>0.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/m2nlight/DarkMode-workflow</string>
 </dict>

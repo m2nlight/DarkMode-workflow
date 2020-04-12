@@ -16,9 +16,12 @@ An alfred workflow for switch dark mode of macOS
 
 ## Usage
 
-Input `dark` and enter to switch dark-mode.
+- Input `dark` or `dark on` and enter to active dark-mode
+- Input `light` or `dark off` and enter to active light-mode
+- Input `dark switch` and enter to switch dark-mode
 
-<img src="screenshot.png" width="585" />
+<img src="screenshot_dark.png" width="585" />
+<img src="screenshot_light.png" width="585" />
 
 ## Thanks
 
